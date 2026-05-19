@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YuvITek Solutions | Premium IT Consulting</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --primary: #0284c7;
+            --primary-hover: #0369a1;
+            --accent: #ef4444;
+            --bg-color: #f0f4f8;
+            --text-light: #0f172a;
+            --text-muted: #475569;
+            --glass-bg: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.6);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            /* Make sure to save the image you uploaded as 'background.jpg' in the same folder */
+            background-image: url('https://res.cloudinary.com/dlzuc9stg/image/upload/v1779212971/5494_h9gnbj.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-container img {
+            max-width: 100%;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+        }
+
+        .logo-text p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            background: rgba(0, 0, 0, 0.05);
+            color: var(--primary);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1000px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 100px;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 50px -10px rgba(0, 0, 0, 0.15);
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            display: inline-block;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: var(--primary);
+            bottom: -8px;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Services List */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .service-item {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .service-item:hover {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .service-item h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Form */
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        input,
+        select,
+        textarea {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: var(--text-light);
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.3);
+            background: #ffffff;
+        }
+
+        button {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(2, 132, 199, 0.6);
+        }
+
+        .privacy-note {
+            grid-column: 1 / -1;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: -0.5rem;
+        }
+
+        /* Contact & WhatsApp */
+        .contact-links {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-links a {
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact-links a:hover {
+            color: var(--primary-hover);
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            transition: transform 0.3s ease;
+            z-index: 100;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-float svg {
+            width: 35px;
+            height: 35px;
+            fill: white;
+        }
+
+        .linkedin-float {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: #0077b5;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(0, 119, 181, 0.4);
+            transition: transform 0.3s ease;
+            z-index: 100;
+        }
+
+        .linkedin-float:hover {
+            transform: scale(1.1);
+        }
+
+        .linkedin-float svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 4rem;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            header {
+                flex-direction: column;
+                gap: 1.5rem;
+                padding: 1.5rem;
+                text-align: center;
+            }
+
+            .header-center {
+                margin: 0.5rem 0;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .logo-container img {
+                width: 220px !important;
+            }
+
+            .header-center p {
+                font-size: 1rem !important;
+                padding: 0 !important;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            form {
+                grid-template-columns: 1fr;
+            }
+
+            .glass-card {
+                padding: 1.5rem;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="https://res.cloudinary.com/dlzuc9stg/image/upload/v1779212827/yuvitek_logo_new.png_zlvl84.png"
+                alt="YuvITek solutions Logo"
+                style="width: 280px; height: auto; object-fit: contain; margin-left: -5px;" />
+        </div>
+        <div class="header-center" style="flex: 1; text-align: center;">
+            <p
+                style="font-family: 'Libre Baskerville', serif; font-size: 1.15rem; font-style: italic; color: var(--text-light); font-weight: 600; letter-spacing: 0.5px; margin: 0; padding: 0 1rem; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px;">
+                Empowering growth through exceptional IT hiring...
+            </p>
+        </div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#form">Join Us</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="animate-in">
+            <div class="glass-card">
+                <h2>Welcome to YuvITek solutions</h2>
+                <p>Hi, I'm <strong>Shiva Nalla</strong>, founder of YuvITek solutions. We provide innovative IT
+                    Consulting and Services to help businesses thrive in the digital world. Our mission is to bridge the
+                    gap between top-tier talent and cutting-edge technology.</p>
+            </div>
+        </section>
+
+        <section id="about" class="animate-in" style="animation-delay: 0.2s;">
+            <div class="glass-card">
+                <h2>About Me</h2>
+                <p>With a passion for technology and talent acquisition, I specialize in helping organizations scale
+                    through robust IT hiring and consulting strategies.</p>
+                <p>With years of experience in the IT sector, YuvITek solutions is committed to driving success for our
+                    clients through tailored, forward-thinking solutions.</p>
+            </div>
+        </section>
+
+        <section id="services" class="animate-in" style="animation-delay: 0.4s;">
+            <div class="glass-card">
+                <h2>Our Services</h2>
+                <p>We offer a comprehensive suite of IT solutions designed to elevate your business operations and team
+                    capabilities.</p>
+
+                <div class="services-grid">
+                    <div class="service-item">
+                        <h3>IT Consulting & Services</h3>
+                        <p>Strategic guidance to align your technology with your business goals.</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>Staff Augmentation</h3>
+                        <p>Technical hiring solutions to quickly scale your engineering teams.</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>Software Solutions</h3>
+                        <p>End-to-end project based development for custom business needs.</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>IT Strategy</h3>
+                        <p>Digital transformation and architecture modernization roadmaps.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="form" class="animate-in" style="animation-delay: 0.6s;">
+            <div class="glass-card">
+                <h2>Applicant Information Form</h2>
+                <p>Join our network of exceptional IT professionals. Fill out the form below to get started.</p>
+
+                <form action="https://formspree.io/f/myzpwyod" method="POST">
+                    <input type="text" name="_gotcha" style="display:none" autocomplete="off" />
+
+                    <div class="form-group">
+                        <label for="full_name">Full Name</label>
+                        <input id="full_name" type="text" name="full_name" required autocomplete="name"
+                            placeholder="John Doe" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact">Contact Number</label>
+                        <input id="contact" type="tel" name="contact" required autocomplete="tel"
+                            placeholder="+1 (555) 000-0000" />
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="email">Email Address</label>
+                        <input id="email" type="email" name="email" required autocomplete="email"
+                            placeholder="john@example.com" />
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="address">Full Address</label>
+                        <textarea id="address" name="address" rows="3" required
+                            placeholder="Enter your complete residential address"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dob">Date of Birth</label>
+                        <input id="dob" type="date" name="dob" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ssn_last5">Last 5 SSN Digits</label>
+                        <input id="ssn_last5" type="text" name="ssn_last5" maxlength="5" pattern="\d{5}" required
+                            placeholder="12345" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bachelor_degree">Bachelor's Degree</label>
+                        <input id="bachelor_degree" type="text" name="bachelor_degree" required
+                            placeholder="e.g. B.S. Computer Science" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="master_degree">Master's Degree (Optional)</label>
+                        <input id="master_degree" type="text" name="master_degree"
+                            placeholder="e.g. M.S. Software Engineering" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="visa_status">Visa Status</label>
+                        <select id="visa_status" name="visa_status" required>
+                            <option value="">Select Status...</option>
+                            <option value="H1B">H1B</option>
+                            <option value="L1">L1</option>
+                            <option value="OPT">OPT</option>
+                            <option value="CPT">CPT</option>
+                            <option value="Green Card">Green Card</option>
+                            <option value="Citizen">US Citizen</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="entry_date">Date of First Entry to US</label>
+                        <input id="entry_date" type="date" name="entry_date" required />
+                    </div>
+
+                    <div class="privacy-note">
+                        <p>Your data is collected securely via end-to-end encryption.</p>
+                    </div>
+
+                    <button type="submit">Submit Application</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="contact" class="animate-in" style="animation-delay: 0.8s;">
+            <div class="glass-card">
+                <h2>Get in Touch</h2>
+                <p>Have questions about our services or want to discuss a potential partnership? Reach out to us.</p>
+                <div class="contact-links">
+                    <a href="mailto:admin.sam@yuvitek.com">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        admin.sam@yuvitek.com
+                    </a>
+                    <a href="tel:+17324547366">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                            </path>
+                        </svg>
+                        +1 732 454 7366
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <a class="whatsapp-float" href="https://wa.me/919553474959" target="_blank" rel="noopener"
+        aria-label="Chat with us on WhatsApp">
+        <svg viewBox="0 0 24 24">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+        </svg>
+    </a>
+
+    <a class="linkedin-float" href="https://www.linkedin.com/company/yuvitek-solutions-llc/" target="_blank"
+        rel="noopener" aria-label="Visit us on LinkedIn">
+        <svg viewBox="0 0 24 24">
+            <path
+                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+        </svg>
+    </a>
+
+    <footer>
+        <p>&copy; 2025 YuvITek Solutions. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
